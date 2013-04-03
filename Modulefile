@@ -1,0 +1,8 @@
+name    'argus'
+version '0.0.1'
+author 'schwicke'
+license 'Apache License, Version 2.0 (the "License")'
+summary 'EMI Argus service'
+description 'This modules provides classes and definitions required to setup an Argus server instance.'
+project_page 'http://www.eu-emi.eu/'
+dependency 'puppetlabs/stdlib'
