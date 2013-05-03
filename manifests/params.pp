@@ -1,6 +1,6 @@
 class argus::params {
   # site name 
-  $sitename                = hiera("SITENAME","SOME.WHERE")
+  $sitename        = hiera("SITENAME","SOME.WHERE")
 
   # pep params
   $pepd_port       = hiera("PEPD_DEFAULT_PORT", "8154")
@@ -28,7 +28,7 @@ class argus::params {
   $service_name     = hiera("SERVICE_NAME", $::fqdn)
   $pap_admin_dn     = hiera("PAP_ADMIN_DN", "")
   $site_base_dn     = hiera("SITE_BASE_DN", "")
-  $pap_host_dn      = hiera("PAP_HOST_DN", "${site_base_dn}${::fqdn}")
+  $pap_host_dn      = hiera("PAP_HOST_DN", "${site_base_dn}=${service_name}")
   $nfspath          = hiera("NFSPATH", "")
   $nfsmountoptions  = hiera("NFSMOUNTOPTIONS", "")
   $mountpoint       = hiera("MOUNTPOINT", "")

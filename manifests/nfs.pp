@@ -30,6 +30,6 @@ class argus::nfs inherits params {
     
   #Of course, make sure this is set up before argus is up and running.
   #auto.gridmapdir being a direct maps, any change should notify the autofs service.
-  Package['nfs-utils']->Service['rpcbind','nfslock']->File['/etc/grid-security/gridmapdir','/etc/auto.gridmapdir']->Service['autofs']->Service['argus-pap','argus-pepd','argus-pdp']
+  Class['argus::servicecert'] -> Package['nfs-utils'] -> Service['rpcbind','nfslock'] -> File['/etc/grid-security/gridmapdir','/etc/auto.gridmapdir'] -> Service['autofs'] -> Service['argus-pap','argus-pepd','argus-pdp']
 
 }
