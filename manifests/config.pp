@@ -64,6 +64,9 @@ class argus::config inherits params {
     enable_gridmapdir_for_group => "root",
   }
   
+  #pepd service must be restarted when the gridmap files change
+  File['/etc/grid-security/grid-mapfile','/etc/grid-security/voms-grid-mapfile','/etc/grid-security/groupmapfile']~>Service['argus-pepd']
+  
   File['/usr/share/argus/pap/conf/pap_configuration.ini','/usr/share/argus/pap/conf/pap_authorization.ini','/usr/share/argus/pap/conf/pap-admin.properties','/etc/argus/pdp/pdp.ini','/usr/share/argus/pepd/conf/pepd.ini'] -> Class['argus::nfs'] -> Class['vosupport'] 
   
 }
