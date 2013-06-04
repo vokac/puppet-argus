@@ -5,7 +5,10 @@
 [dn]
 "<%=pap_admin_dn%>" : ALL
 "<%=pap_host_dn%>" : ALL
-
+"<%=pap_service_dn%>" : ALL
+<%pap_auth.each do |rule| -%>
+<%=rule%>
+<%end-%>
 [fqan]
 
 

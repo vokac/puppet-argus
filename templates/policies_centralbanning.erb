@@ -1,0 +1,12 @@
+<%unless (pap_ban.nil?) -%>
+<%if (pap_ban.is_a? Array) -%>
+resource ".*" {
+
+    action ".*" {
+        <%pap_ban.each do |dn|-%>
+        rule deny { <%=dn%> }
+        <%end-%>
+    }
+}
+<%end -%>
+<%end -%>

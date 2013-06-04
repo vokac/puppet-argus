@@ -8,16 +8,25 @@ class argus::config inherits params {
   #
   # configuration files
   #
-  file {"/usr/share/argus/pap/conf/pap_configuration.ini":
-    ensure => present,
-    owner => "root",
-    group => "root",
-    mode => 0640,
-    content => template("argus/pap_configuration.ini.erb"),
+  include concat::setup
+
+  concat{"/usr/share/argus/pap/conf/pap_configuration.ini":
+    owner =>  'root',
+    group =>  'root',
+    mode  =>  '0640',
     require => Package['emi-argus'],
     notify  => Service['argus-pap'],
   }
+  
+     
+  concat::fragment{"pap_configuration.ini": 
+    target  => "/usr/share/argus/pap/conf/pap_configuration.ini",
+    order   => "9",
+    content => template("argus/pap_configuration.ini.erb"),
+  }
+  
 
+  
   file {"/usr/share/argus/pap/conf/pap_authorization.ini":
     ensure => present,
     owner => "root",
@@ -58,6 +67,7 @@ class argus::config inherits params {
     notify  => Service['argus-pepd'],
   }
   
+  include 'argus::centralbanning'
   
   class {'vosupport':
     supported_vos => [atlas, cms, lhcb, alice, dteam, ops, 'vo.aleph.cern.ch', 'vo.delphi.cern.ch', 'vo.l3.cern.ch', 
@@ -74,6 +84,6 @@ class argus::config inherits params {
   #pepd service must be restarted when the gridmap files change
   File['/etc/grid-security/grid-mapfile','/etc/grid-security/voms-grid-mapfile','/etc/grid-security/groupmapfile']~>Service['argus-pepd']
   
-  File['/usr/share/argus/pap/conf/pap_configuration.ini','/usr/share/argus/pap/conf/pap_authorization.ini','/usr/share/argus/pap/conf/pap-admin.properties','/etc/argus/pdp/pdp.ini','/usr/share/argus/pepd/conf/pepd.ini'] -> Class['argus::nfs'] -> Class['vosupport'] -> Class['argus::bdii']
+  File['/usr/share/argus/pap/conf/pap_authorization.ini','/usr/share/argus/pap/conf/pap-admin.properties','/etc/argus/pdp/pdp.ini','/usr/share/argus/pepd/conf/pepd.ini'] -> Class['vosupport'] -> Class['argus::bdii']
   
 }

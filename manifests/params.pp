@@ -20,6 +20,7 @@ class argus::params {
   
 
   # central banning setup  
+  $centralbanning_enabled  = hiera("CENTRALBANNING_ENABLED","false")
   $centralbanning_dn       = hiera("CENTRALBANNING_DN", "")
   $centralbanning_hostname = hiera("CENTRALBANNING_HOSTNAME", "")
   $centralbanning_port     = hiera("CENTRALBANNING_PORT", 8150)
@@ -28,8 +29,16 @@ class argus::params {
   $service_name     = hiera("SERVICE_NAME", $::fqdn)
   $pap_admin_dn     = hiera("PAP_ADMIN_DN", "")
   $site_base_dn     = hiera("SITE_BASE_DN", "")
-  $pap_host_dn      = hiera("PAP_HOST_DN", "${site_base_dn}=${service_name}")
+  $pap_service_dn   = hiera("PAP_SERVICE_DN", "${site_base_dn}=${service_name}")
+  $pap_host_dn      = hiera("PAP_HOST_DN", "${site_base_dn}=$::fqdn")
   $nfspath          = hiera("NFSPATH", "")
   $nfsmountoptions  = hiera("NFSMOUNTOPTIONS", "")
   $mountpoint       = hiera("MOUNTPOINT", "")
+
+  # additional rules for pap
+  $pap_auth         = hiera("PAP_AUTH","")
+
+  # banning rules
+  $pap_ban          = hiera("PAP_BAN","")
+
 }

@@ -1,18 +1,3 @@
-[paps]
-centralbanning.type = remote
-centralbanning.enabled = true
-centralbanning.dn = <%=centralbanning_dn%>
-centralbanning.hostname = <%=centralbanning_hostname%>
-centralbanning.port = <%=centralbanning_port%>
-centralbanning.path = /pap/services/
-centralbanning.protocol = https
-centralbanning.public = false
-
-[paps:properties]
-poll_interval = 14400
-ordering = centralbanning
-ordering = default
-
 [repository]
 location = /usr/share/argus/pap/repository
 consistency_check = false
