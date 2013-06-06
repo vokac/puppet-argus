@@ -15,4 +15,5 @@ class argus::firewall inherits params{
     dport  => "$pepd_port",
     action => 'accept',
   }
+  include bdii::firewall
 }

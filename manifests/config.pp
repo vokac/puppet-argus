@@ -1,11 +1,6 @@
 class argus::config inherits params {
   
   #
-  # configure bdii
-  #
-  include argus::bdii
-
-  #
   # configuration files
   #
   include concat::setup

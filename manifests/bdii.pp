@@ -2,7 +2,7 @@ class argus::bdii inherits params {
   #
   # setup the service provider for bdii on Argus
   # 
-  
+  include bdii
   file {"/var/lib/bdii/gip/provider/glite-info-glue2-provider-service-argus":
     ensure => present,
     owner => "ldap",
