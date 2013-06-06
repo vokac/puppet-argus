@@ -9,7 +9,7 @@ private_key = /etc/grid-security/hostkey.pem
 
 [standalone-service]
 entity_id = http://<%=service_name%>/pap
-hostname = localhost
+hostname = <%=fqdn%> 
 port = <%=pap_port%>
 shutdown_port = <%=pap_shutdown_port%>
 shutdown_command = <%=pap_shutdown_command%>
