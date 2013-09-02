@@ -52,6 +52,16 @@ class argus::config inherits params {
     notify  => Service['argus-pdp'],
   }
   
+  file {"/etc/argus/pdp/logging.xml":
+    ensure => present,
+    owner => "root",
+    group => "root",
+    mode => 0644,
+    content => template("argus/pdp/logging.xml.erb"),
+    require => Package['emi-argus'],
+    notify  => Service['argus-pdp'],
+  }
+  
   file {"/usr/share/argus/pepd/conf/pepd.ini":
     ensure => present,
     owner => "root",

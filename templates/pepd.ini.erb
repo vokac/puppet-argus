@@ -4,17 +4,17 @@
 # Documentation: https://twiki.cern.ch/twiki/bin/view/EGEE/AuthZPEPDConfig
 # 
 [SERVICE]
-entityId  = http://<%=service_name%>/pepd
-hostname  = <%=fqdn%>
-port      = <%=pepd_port%>
-adminPort = <%=pepd_admin_port%>
-adminPassword = <%=pepd_pass%>
+entityId  = http://<%=@service_name%>/pepd
+hostname  = <%=@fqdn%>
+port      = <%=@pepd_port%>
+adminPort = <%=@pepd_admin_port%>
+adminPassword = <%=@pepd_pass%>
 
 pips = REQVALIDATOR_PIP OPENSSLSUBJECT_PIP GLITEXACMLPROFILE_PIP COMMONXACMLPROFILE_PIP
 obligationHandlers = ACCOUNTMAPPER_OH
 
 [PDP]
-pdps = https://<%=fqdn%>:<%=pdps_port%>/authz
+pdps = https://<%=@service_name%>:<%=@pdps_port%>/authz
 maximumCachedResponses = 0 
 
 [SECURITY]
@@ -22,9 +22,7 @@ servicePrivateKey = /etc/grid-security/hostkey.pem
 serviceCertificate = /etc/grid-security/hostcert.pem
 trustInfoDir = /etc/grid-security/certificates/
 enableSSL = true
-#requireClientCertAuthentication = true
-# fixme : temporarily for WMS
-requireClientCertAuthentication = false 
+requireClientCertAuthentication = true
 
 #
 # Policy Information Points (PIP) configuration

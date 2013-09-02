@@ -1,4 +1,7 @@
 class argus::lemon {
+
+  # Argus monitoring:
+  
   # metrics: 
   lemon::metric{'12026':}
   lemon::metric{'12027':}
@@ -9,5 +12,8 @@ class argus::lemon {
   lemon::metric{'33309':}
   lemon::metric{'33310':}
   lemon::metric{'33311':}
+
+  # bdii monitoring
+  include bdii::lemon
   
 }

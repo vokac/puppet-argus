@@ -41,4 +41,8 @@ class argus::params {
   # banning rules
   $pap_ban          = hiera("PAP_BAN","")
 
+  # logging
+  $pdp_log_level         = hiera("PDP_LOG_LEVEL","INFO")
+  $pdp_saml_log_level    = hiera("PDP_SAML_LOG_LEVEL","WARN")
+
 }

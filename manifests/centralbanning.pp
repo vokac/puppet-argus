@@ -13,7 +13,7 @@ class argus::centralbanning inherits params {
       mode => 0644,
       content => template("argus/centralbanning.erb"),
     }
-    exec {"/usr/bin/pap-admin --host $::fqdn enable-pap centralbanning && /usr/bin/pap-admin --host $::fqdn set-paps-order centralbanning default && /usr/bin/pap-admin --host $::fqdn refresh-cache centralbanning":
+    exec {"/usr/bin/pap-admin -host $::fqdn enable-pap centralbanning && /usr/bin/pap-admin -host $::fqdn set-paps-order centralbanning default && /usr/bin/pap-admin -host $::fqdn refresh-cache centralbanning":
       require => File["/etc/cron.d/centralbanning"],
     }
   }

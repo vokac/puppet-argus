@@ -3,12 +3,12 @@
 # Documentation: https://twiki.cern.ch/twiki/bin/view/EGEE/AuthZPAPConfig
 # 
 [dn]
-"<%=pap_admin_dn%>" : ALL
-"<%=pap_host_dn%>" : ALL
-"<%=pap_service_dn%>" : ALL
-<%pap_auth.each do |rule| -%>
+"<%=@pap_host_dn%>" : ALL
+"<%=@pap_service_dn%>" : ALL
+<%@pap_admin_dn.each do |dn| -%>
+"<%=dn-%>" : ALL
+<%end-%>
+<%@pap_auth.each do |rule| -%>
 <%=rule%>
 <%end-%>
 [fqan]
-
-

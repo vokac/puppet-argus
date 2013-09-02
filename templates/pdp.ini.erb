@@ -4,14 +4,14 @@
 # Documentation: https://twiki.cern.ch/twiki/bin/view/EGEE/AuthZPDPConfig
 # 
 [SERVICE]
-entityId = http://<%=service_name%>/pdp
-hostname = <%=fqdn%>
-port     = <%=pdp_port%>
-adminPort = <%=pdp_admin_port%>
-adminPassword = <%=pdp_pass%>
+entityId = http://<%=@service_name%>/pdp
+hostname = <%=@fqdn%>
+port     = <%=@pdp_port%>
+adminPort = <%=@pdp_admin_port%>
+adminPassword = <%=@pdp_pass%>
 
 [POLICY]
-paps = https://localhost:8150/pap/services/ProvisioningService
+paps = https://<%=@fqdn-%>:8150/pap/services/ProvisioningService
 retentionInterval = 240
 
 [SECURITY]
