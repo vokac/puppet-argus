@@ -26,6 +26,7 @@ class argus::nfs inherits params {
     group  => 'root',
     mode   => '0644',
     content => "${mountpoint} ${nfsmountoptions} ${nfspath}",
+    loglevel => err,
   }
     
   #Of course, make sure this is set up before argus is up and running.

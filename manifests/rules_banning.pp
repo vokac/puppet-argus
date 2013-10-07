@@ -17,6 +17,7 @@ class argus::rules_banning inherits argus::params  {
     content => template("argus/policies_centralbanning.erb"),
     require => File["/var/cache/argus"],
     notify => Exec["update_argus_policies"],
+    loglevel => err
   }
 
   exec {"delete_argus_policies":

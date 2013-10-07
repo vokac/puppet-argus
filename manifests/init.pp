@@ -9,17 +9,20 @@ class argus (
       class {'argus::firewall':}
       class {'argus::service':}
       
-      #Workaround for https://ggus.eu/ws/ticket_info.php?ticket=96586 
-      #Until java 1.7 u40 is available and fixes the problem, we need to set java 6 as the Java version for PEPD.
+      #Workaround for https://ggus.eu/ws/ticket_info.php?ticket=96586
+      #The default java version is Oracle 1.7 which does not contain the fix as of Sept 2013.  
+      #Until Oracle java 1.7 u60 is available and fixes the problem, we need to use openjdk 1.7 >=2.3.10 as the Java version for PEPD.
       #TODO: this should be undone when the problem is fixed. See GS-259 for details
-      $java6_pkg="java-1.6.0-sun"
-      $java6_path="/usr/lib/jvm/jre-1.6.0-sun.x86_64/bin/java"
-      ensure_packages([$java6_pkg,])
-      file_line { 'force java 6 for pepd':
+      $java_pkg="java-1.7.0-openjdk"
+      $java_path="/usr/lib/jvm/jre-1.7.0-openjdk.x86_64/bin/java"
+      ensure_packages([$java_pkg,])
+      file_line { 'force java openjdk 7 for pepd':
         path => '/etc/sysconfig/argus-pepd',
-        line => "JAVACMD='$java6_path'",
-        require => Class['argus::install','argus::config'],
+        line => "JAVACMD='$java_path'",
+        match => '^\s*JAVACMD\s*=',
+        require => [ Class['argus::install','argus::config'], Package[$java_pkg] ],
         notify => Service['argus-pepd'],
+        loglevel => err,
       }
     }    
     default: {
