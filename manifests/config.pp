@@ -30,6 +30,7 @@ class argus::config inherits params {
     content => template("argus/pap_authorization.ini.erb"),
     require => Package['emi-argus'],
     notify  => Service['argus-pap'],
+    loglevel => err,
   }
   
   file {"/usr/share/argus/pap/conf/pap-admin.properties":
@@ -40,6 +41,7 @@ class argus::config inherits params {
     content => template("argus/pap-admin.properties.erb"),
     require => Package['emi-argus'],
     notify  => Service['argus-pap'],
+    loglevel => err,
   }
   
   file {"/etc/argus/pdp/pdp.ini":
@@ -50,6 +52,7 @@ class argus::config inherits params {
     content => template("argus/pdp.ini.erb"),
     require => Package['emi-argus'],
     notify  => Service['argus-pdp'],
+    loglevel => err,
   }
   
   file {"/etc/argus/pdp/logging.xml":
@@ -60,6 +63,7 @@ class argus::config inherits params {
     content => template("argus/pdp/logging.xml.erb"),
     require => Package['emi-argus'],
     notify  => Service['argus-pdp'],
+    loglevel => err,
   }
   
   file {"/usr/share/argus/pepd/conf/pepd.ini":
@@ -70,6 +74,7 @@ class argus::config inherits params {
     content => template("argus/pepd.ini.erb"),
     require => Package['emi-argus'],
     notify  => Service['argus-pepd'],
+    loglevel => err,
   }
   
   include 'argus::centralbanning'
