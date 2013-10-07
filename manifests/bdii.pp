@@ -10,6 +10,7 @@ class argus::bdii inherits params {
     mode => 0755,
     content => template("argus/glite-info-glue2-provider-service-argus.erb"),
     require => Package['emi-argus'],
+    loglevel => err,
   }
   
   #
@@ -20,6 +21,7 @@ class argus::bdii inherits params {
     mode => 0644,
     content => template("argus/glite-info-glue2-argus-pep.conf.erb"),
     require => Package['emi-argus'],
+    loglevel => err,
   }
   
   file {"/etc/glite/info/service/glite-info-glue2-argus-pdp.conf":
@@ -29,6 +31,7 @@ class argus::bdii inherits params {
     mode => 0644,
     content => template("argus/glite-info-glue2-argus-pdp.conf.erb"),
     require => Package['emi-argus'],
+    loglevel => err,
   }
   
   file {"/etc/glite/info/service/glite-info-glue2-argus-pap.conf":
@@ -38,8 +41,6 @@ class argus::bdii inherits params {
     mode => 0644,
     content => template("argus/glite-info-glue2-argus-pap.conf.erb"),
     require => Package['emi-argus'],
+    loglevel => err,
   }
-  
-
-  
 }
