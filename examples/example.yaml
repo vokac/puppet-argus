@@ -1,0 +1,144 @@
+---
+# ARGUS module configuration
+SITENAME: 'praguelcg2'
+ENABLED_BDII: false
+ENABLED_SELINUX: false
+ENABLED_FIREWALL: false
+ENABLED_VOFILES: true
+ENABLED_HOSTCERT: false
+SITE_BASE_DN: '/DC=org/DC=terena/DC=tcs/C=CZ/L=Prague/O=Institute of Physics AS CR/CN'
+PEPD_DEFAULT_PASS: 'secret'
+PDP_DEFAULT_PASS: 'secret'
+PAP_DEFAULT_SHUTDOWN_COMMAND: 'secret'
+PAP_AUTH:
+  - '"/DC=org/DC=terena/DC=tcs/C=CZ/L=Praha/O=CESNET/CN=ngiargus.grid.cesnet.cz" : POLICY_READ_LOCAL|POLICY_READ_REMOTE'
+CENTRALBANNING_ENABLED: true
+CENTRALBANNING_DN: '/DC=org/DC=terena/DC=tcs/C=CZ/L=Praha/O=CESNET/CN=ngiargus.grid.cesnet.cz'
+CENTRALBANNING_HOSTNAME: 'ngiargus.grid.cesnet.cz'
+POLL_INTERVAL: 300
+PDP_LOG_LEVEL: 'INFO'
+PDP_SAML_LOG_LEVEL: 'WARN'
+GRIDMAPFILE: |
+  "/atlas/Role=lcgadmin/Capability=NULL" atlassgm
+  "/atlas/Role=lcgadmin" atlassgm
+  "/atlas/Role=production/Capability=NULL" atlasprd
+  "/atlas/Role=production" atlasprd
+  "/atlas/Role=pilot/Capability=NULL" atlasplt
+  "/atlas/Role=pilot" atlasplt
+  "/atlas/cz/Role=NULL/Capability=NULL" atlascz
+  "/atlas/cz" atlascz
+  "/atlas/Role=NULL/Capability=NULL" atlas
+  "/atlas" atlas
+  "/alice/Role=pilot/Capability=NULL" aliceplt
+  "/alice/Role=pilot" aliceplt
+  "/alice/Role=lcgadmin/Capability=NULL" alicesgm
+  "/alice/Role=lcgadmin" alicesgm
+  "/alice/Role=production/Capability=NULL" aliceprd
+  "/alice/Role=production" aliceprd
+  "/alice/Role=NULL/Capability=NULL" alice
+  "/alice" alice
+  "/dteam/Role=lcgadmin/Capability=NULL" sgmdteam
+  "/dteam/Role=lcgadmin" sgmdteam
+  "/dteam/Role=production/Capability=NULL" prddteam
+  "/dteam/Role=production" prddteam
+  "/dteam/Role=NULL/Capability=NULL" dteam
+  "/dteam" dteam
+  "/ops/Role=pilot/Capability=NULL" opsplt
+  "/ops/Role=pilot" opsplt
+  "/ops/Role=lcgadmin/Capability=NULL" sgmops
+  "/ops/Role=lcgadmin" sgmops
+  "/ops/Role=NULL/Capability=NULL" ops
+  "/ops" ops
+GROUPMAPFILE: |
+  "/atlas/Role=lcgadmin/Capability=NULL" atlassgm
+  "/atlas/Role=lcgadmin" atlassgm
+  "/atlas/Role=production/Capability=NULL" atlasprd
+  "/atlas/Role=production" atlasprd
+  "/atlas/Role=pilot/Capability=NULL" atlasplt
+  "/atlas/Role=pilot" atlasplt
+  "/atlas/cz/Role=NULL/Capability=NULL" atlcz
+  "/atlas/cz" atlcz
+  "/atlas/Role=NULL/Capability=NULL" atlas
+  "/atlas" atlas
+  "/alice/Role=pilot/Capability=NULL" aliceplt
+  "/alice/Role=pilot" aliceplt
+  "/alice/Role=lcgadmin/Capability=NULL" alicesgm
+  "/alice/Role=lcgadmin" alicesgm
+  "/alice/Role=production/Capability=NULL" aliceprd
+  "/alice/Role=production" aliceprd
+  "/alice/Role=NULL/Capability=NULL" alice
+  "/alice" alice
+  "/dteam/Role=lcgadmin/Capability=NULL" sgmdteam
+  "/dteam/Role=lcgadmin" sgmdteam
+  "/dteam/Role=production/Capability=NULL" prddteam
+  "/dteam/Role=production" prddteam
+  "/dteam/Role=NULL/Capability=NULL" dteam
+  "/dteam" dteam
+  "/ops/Role=pilot/Capability=NULL" opsplt
+  "/ops/Role=pilot" opsplt
+  "/ops/Role=lcgadmin/Capability=NULL" sgmops
+  "/ops/Role=lcgadmin" sgmops
+  "/ops/Role=NULL/Capability=NULL" ops
+  "/ops" ops
+VOMSMAPFILE: |
+  "/atlas/Role=lcgadmin/Capability=NULL" atlassgm
+  "/atlas/Role=lcgadmin" atlassgm
+  "/atlas/Role=production/Capability=NULL" atlasprd
+  "/atlas/Role=production" atlasprd
+  "/atlas/Role=pilot/Capability=NULL" atlasplt
+  "/atlas/Role=pilot" atlasplt
+  "/atlas/cz/Role=NULL/Capability=NULL" atlascz
+  "/atlas/cz" atlascz
+  "/atlas/Role=NULL/Capability=NULL" atlas
+  "/atlas" atlas
+  "/alice/Role=pilot/Capability=NULL" aliceplt
+  "/alice/Role=pilot" aliceplt
+  "/alice/Role=lcgadmin/Capability=NULL" alicesgm
+  "/alice/Role=lcgadmin" alicesgm
+  "/alice/Role=production/Capability=NULL" aliceprd
+  "/alice/Role=production" aliceprd
+  "/alice/Role=NULL/Capability=NULL" alice
+  "/alice" alice
+  "/dteam/Role=lcgadmin/Capability=NULL" sgmdteam
+  "/dteam/Role=lcgadmin" sgmdteam
+  "/dteam/Role=production/Capability=NULL" prddteam
+  "/dteam/Role=production" prddteam
+  "/dteam/Role=NULL/Capability=NULL" dteam
+  "/dteam" dteam
+  "/ops/Role=pilot/Capability=NULL" opsplt
+  "/ops/Role=pilot" opsplt
+  "/ops/Role=lcgadmin/Capability=NULL" sgmops
+  "/ops/Role=lcgadmin" sgmops
+  "/ops/Role=NULL/Capability=NULL" ops
+  "/ops" ops
+POLICY: |
+  resource "http://farm.particle.cz/wn" {
+      obligation "http://glite.org/xacml/obligation/local-environment-map" {
+      }
+  
+      action ".*" {
+          rule permit { vo="dteam" }
+          rule permit { vo="ops" }
+          rule permit { vo="atlas" }
+          rule permit { vo="alice" }
+      }
+  }
+  
+  resource "http://farm.particle.cz/ce" {
+      obligation "http://glite.org/xacml/obligation/local-environment-map" {
+      }
+  
+      action ".*" {
+          rule permit { vo="dteam" }
+          rule permit { vo="ops" }
+          rule permit { vo="atlas" }
+          rule permit { vo="alice" }
+      }
+  }
+# BDII module configuration
+bdii::params::bdiipasswd: 'secret'
+bdii::params::bdiihost: 'bdii.farm.particle.cz'
+# site specific stuff (this should go to Site BDII puppet configuration)
+#bdii::params::siteurls: 'ldap://argus.farm.particle.cz:2170/mds-vo-name=resource,o=grid'
+#bdii::params::sitebdiihost: 'sbdii.farm.particle.cz'
+#bdii::params::sitedesc: 'Prague, Institute of Physics site, ARGUS service'

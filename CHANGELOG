@@ -1,3 +1,7 @@
+2017-12-26 Petr Vokac <petr.vokac at cern.ch>
+    * Updated to work with CentOS7 and with optional/configurable
+      dependencies on BDII, firewall, vosupport puppet modules
+
 2013-01-08 Ulrich Schwickerath <ulrich.schwickerath at cern.ch>
 
     * First Release

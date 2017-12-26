@@ -1,5 +1,5 @@
-class argus::centralbanning inherits params {
-  
+class argus::centralbanning inherits argus::params {
+
   if $centralbanning_enabled {
     concat::fragment{"pap_configuration.centralbanning.ini": 
       target  => "/usr/share/argus/pap/conf/pap_configuration.ini",
@@ -10,12 +10,14 @@ class argus::centralbanning inherits params {
       ensure => present,
       owner => "root",
       group => "root",
-      mode => 0644,
+      mode => '0644',
       content => template("argus/centralbanning.erb"),
-      loglevel => err,
+      notify => Exec['update_pap_config_and_centralbanning_cache'],
     }
-    exec {"/usr/bin/pap-admin -host $::fqdn enable-pap centralbanning && /usr/bin/pap-admin -host $::fqdn set-paps-order centralbanning default && /usr/bin/pap-admin -host $::fqdn refresh-cache centralbanning":
-      require => File["/etc/cron.d/centralbanning"],
+    exec {"update_pap_config_and_centralbanning_cache":
+      command => "/usr/bin/pap-admin -host $::fqdn enable-pap centralbanning && /usr/bin/pap-admin -host $::fqdn set-paps-order centralbanning default && /usr/bin/pap-admin -host $::fqdn refresh-cache centralbanning",
+      require => [ File["/etc/cron.d/centralbanning"] ],
+      refreshonly => true,
     }
   }
   else
@@ -27,4 +29,4 @@ class argus::centralbanning inherits params {
     }
   }
 }
-  
+

@@ -10,8 +10,8 @@ port      = <%=@pepd_port%>
 adminPort = <%=@pepd_admin_port%>
 adminPassword = <%=@pepd_pass%>
 
-pips = REQVALIDATOR_PIP OPENSSLSUBJECT_PIP GLITEXACMLPROFILE_PIP COMMONXACMLPROFILE_PIP
-obligationHandlers = ACCOUNTMAPPER_OH
+pips = REQVALIDATOR_PIP OPENSSLSUBJECT_PIP GLITEXACMLPROFILE_PIP COMMONXACMLPROFILE_PIP AUTHN_PROFILE_PIP
+obligationHandlers = ACCOUNTMAP_OH
 
 [PDP]
 pdps = https://<%=@service_name%>:<%=@pdps_port%>/authz
@@ -40,23 +40,29 @@ opensslSubjectAttributeIDs = http://glite.org/xacml/attribute/subject-issuer urn
 opensslSubjectAttributeDatatypes = http://www.w3.org/2001/XMLSchema#string
 
 [GLITEXACMLPROFILE_PIP]
-parserClass = org.glite.authz.pep.pip.provider.GLiteAuthorizationProfilePIPIniConfigurationParser
+parserClass = org.glite.authz.pep.pip.provider.AuthorizationProfilePIPIniConfigurationParser
 vomsInfoDir = /etc/grid-security/vomsdir/
 acceptedProfileIDs = http://glite.org/xacml/profile/grid-ce/1.0 http://glite.org/xacml/profile/grid-wn/1.0
 
 [COMMONXACMLPROFILE_PIP]
 parserClass = org.glite.authz.pep.pip.provider.CommonXACMLAuthorizationProfilePIPIniConfigurationParser
 vomsInfoDir = /etc/grid-security/vomsdir/
-acceptedProfileIDs = http://dci-sec.org/xacml/profile/common-authz/1.1 
+acceptedProfileIDs = http://dci-sec.org/xacml/profile/common-authz/1.1
+
+[AUTHN_PROFILE_PIP]
+parserClass = org.glite.authz.pep.pip.provider.authnprofilespip.AuthenticationProfilePIPConfigurationParser
+authenticationProfilePolicyFile = /etc/argus/pepd/vo-ca-ap-file
+trustAnchors.directory = /etc/grid-security/certificates
+trustAnchors.policyFilePattern = policy-*.info
+trustAnchors.refreshIntervalInSecs = 14400
 
 #
 # Obligation Handlers (OH) configuration
 #
-[ACCOUNTMAPPER_OH]
+[ACCOUNTMAP_OH]
 parserClass = org.glite.authz.pep.obligation.dfpmap.DFPMObligationHandlerConfigurationParser
 handledObligationId = http://glite.org/xacml/obligation/local-environment-map
 accountMapFile = /etc/grid-security/grid-mapfile 
 groupMapFile = /etc/grid-security/groupmapfile
 gridMapDir = /etc/grid-security/gridmapdir
 useSecondaryGroupNamesForMapping = true
-

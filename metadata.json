@@ -1,0 +1,17 @@
+{
+  "name": "CERNOps-argus",
+  "version": "0.1.0",
+  "author": "CERNOps",
+  "summary": "Manage the Argus Authorization Service",
+  "license": "Apache-2.0",
+  "source": "http://github.com/cernops/puppet-argus",
+  "project_page": "https://github.com/cernops/puppet-argus",
+  "issues_url": "https://github.com/cernops/puppet-argus/issues",
+  "dependencies": [
+    {"name":"puppetlabs/stdlib","version_requirement": ">=1.0.0"},
+    {"name":"puppetlabs/concat","version_requirement": ">=1.0.0"},
+    {"name":"puppetlabs/firewall","version_requirement": ">=1.0.0"},
+    {"name":"CERNOps/bdii","version_requirement":">= 0.1.0 <= 1.0.0"},
+  ],
+  "data_provider": null
+}
