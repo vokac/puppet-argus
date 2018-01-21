@@ -1,5 +1,5 @@
 {
-  "name": "vokac-argus",
+  "name": "CERNOps-argus",
   "version": "0.1.0",
   "author": "vokac",
   "summary": "Manage the Argus Authorization Service",
@@ -11,7 +11,7 @@
     {"name":"puppetlabs/stdlib","version_requirement": ">=1.0.0"},
     {"name":"puppetlabs/concat","version_requirement": ">=1.0.0"},
     {"name":"puppetlabs/firewall","version_requirement": ">=1.0.0"},
-    {"name":"vokac/bdii","version_requirement":">= 0.1.0 <= 1.0.0"}
+    {"name":"CERNOps/bdii","version_requirement":">= 0.1.0 <= 1.0.0"}
   ],
   "data_provider": null
 }
